@@ -1,9 +1,10 @@
-
+import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
 
 export default function App() {
+  const { data: contacts, error, isLoading } = useFetchContactsQuery()
 
   return (
     <div style={{ padding: '20px' }}>
@@ -11,7 +12,7 @@ export default function App() {
       <ContactForm  />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList/>
+      {contacts && <ContactList contacts={contacts} />}
     </div>
   );
 }
