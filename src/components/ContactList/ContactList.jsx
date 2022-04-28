@@ -2,15 +2,17 @@
 // import { getContacts,getVisibleContacts } from 'redux/contacts/contacts-selectors';
 import ContactItem from '../ContactItem/ContactItem';
 
-const ContactList = ({contacts, onDelete,deleting}) => {
-  // const contacts = useSelector(getContacts)
-  // const visibledContacts = useSelector(getVisibleContacts)
+const ContactList = ({filter,contacts, onDelete,deleting}) => {
+  const normalizedFilter = filter.toLowerCase();
+  const visibledContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
 
   return (
   <>
-    {contacts && (
+    {visibledContacts && (
       <ul>
-          {contacts.map(({ name, id, phone }) => {
+          {visibledContacts.map(({ name, id, phone }) => {
         return (
           <ContactItem
             key={id}
