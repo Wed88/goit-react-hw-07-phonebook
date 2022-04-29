@@ -2,7 +2,7 @@
 // import { getContacts,getVisibleContacts } from 'redux/contacts/contacts-selectors';
 import ContactItem from '../ContactItem/ContactItem';
 
-const ContactList = ({filter,contacts, onDelete,deleting}) => {
+const ContactList = ({filter,contacts}) => {
   const normalizedFilter = filter.toLowerCase();
   const visibledContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(normalizedFilter)
@@ -19,8 +19,7 @@ const ContactList = ({filter,contacts, onDelete,deleting}) => {
             id={id}
             name={name}
             number={phone}
-            onDelete={onDelete}
-            deleting={deleting}
+            
           />
         );
       })}

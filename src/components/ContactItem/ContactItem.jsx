@@ -1,10 +1,12 @@
 import React from 'react';
+import { useDeleteContactMutation } from 'redux/contacts/contactsSlice';
 // import PropTypes from 'prop-types';
 // import { useDispatch } from 'react-redux';
 // import contactsActions from 'redux/contacts/contacts-actions';
 import { Item, Text, Button } from './ContactItem.styled';
 
-const ContactItem = ({ id, name, number, onDelete,deleting }) => {
+const ContactItem = ({ id, name, number, onDelete, deleting }) => {
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   // const dispatch = useDispatch()
   
   // const deleteContact = contactId => {
@@ -17,8 +19,8 @@ const ContactItem = ({ id, name, number, onDelete,deleting }) => {
     <Text>
       {name}:&nbsp; {number}
     </Text>
-    <Button type="button" onClick={() => onDelete(id)}>
-     {deleting ? 'Deleting...' : 'Delete'}
+    <Button type="button" onClick={() => deleteContact(id)}>
+     {isDeleting ? 'Deleting...' : 'Delete'}
     </Button>
   </Item>)
 };

@@ -43,7 +43,7 @@ export default function ContactForm() {
   //     : dispatch(contactsActions.addContact(newContact));
   // };
 
-  const hendleSubmit = event => {
+  const hendleSubmit = async event => {
     event.preventDefault();
    
     const name = event.currentTarget.elements.name.value;
@@ -51,7 +51,7 @@ export default function ContactForm() {
     event.currentTarget.reset();
 
    try {
-       createContact({ name, phone });
+      await createContact({ name, phone });
       
     } catch (error) {
       console.log(error);
