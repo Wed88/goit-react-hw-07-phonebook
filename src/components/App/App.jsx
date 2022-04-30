@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import ContactForm from '../ContactForm/ContactForm';
 import Filter from '../Filter/Filter';
 import ContactList from '../ContactList/ContactList';
@@ -23,7 +25,7 @@ export default function App() {
       <h2>Contacts</h2>
       <Filter value={filter} changeFilter={changeFilter}/>
       {contacts && <ContactList filter={filter} contacts={contacts} />}
-     
+       <ToastContainer />
     </div>
   );
 }
